@@ -1,0 +1,5 @@
+{
+  "name": "BBTrack - Bowling Ball Maintenance",
+  "description": "A comprehensive bowling ball maintenance scheduler and arsenal tracker. Manage game counts, customize maintenance intervals, and get AI-powered surfacing advice.",
+  "requestFramePermissions": []
+}

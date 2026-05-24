@@ -1,0 +1,24 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import React, { useState } from 'react';
+import { X, Save, Camera } from 'lucide-react';
+import { CoverstockType } from '../types';
+const BallModal = ({ isOpen, onClose, onSave, initialData }) => {
+    const [formData, setFormData] = useState({
+        name: initialData?.name || '',
+        brand: initialData?.brand || '',
+        coverstock: initialData?.coverstock || CoverstockType.SOLID,
+        surfaceFinish: initialData?.surfaceFinish || 'Out of Box',
+        imageUrl: initialData?.imageUrl || ''
+    });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formData.name || !formData.brand)
+            return;
+        onSave({
+            ...formData,
+            totalGames: initialData?.totalGames || 0
+        });
+    };
+    return (_jsxs("div", { className: "fixed inset-0 z-[100] flex items-center justify-center p-4", children: [_jsx("div", { className: "absolute inset-0 bg-slate-950/80 backdrop-blur-sm", onClick: onClose }), _jsxs("div", { className: "relative glass w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200", children: [_jsxs("div", { className: "flex items-center justify-between p-6 border-b border-slate-700/50", children: [_jsx("h2", { className: "text-xl font-bold", children: initialData ? 'Edit Ball' : 'New Performance Ball' }), _jsx("button", { onClick: onClose, className: "p-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-800 transition-all", children: _jsx(X, { size: 24 }) })] }), _jsxs("form", { onSubmit: handleSubmit, className: "p-6 space-y-5", children: [_jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-4", children: [_jsxs("div", { className: "space-y-2", children: [_jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest", children: "Ball Name" }), _jsx("input", { required: true, type: "text", placeholder: "e.g. Phaze II", className: "w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all", value: formData.name, onChange: (e) => setFormData({ ...formData, name: e.target.value }) })] }), _jsxs("div", { className: "space-y-2", children: [_jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest", children: "Brand" }), _jsx("input", { required: true, type: "text", placeholder: "e.g. Storm", className: "w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all", value: formData.brand, onChange: (e) => setFormData({ ...formData, brand: e.target.value }) })] })] }), _jsxs("div", { className: "space-y-2", children: [_jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest", children: "Coverstock Type" }), _jsx("select", { className: "w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all appearance-none", value: formData.coverstock, onChange: (e) => setFormData({ ...formData, coverstock: e.target.value }), children: Object.values(CoverstockType).map(type => (_jsx("option", { value: type, children: type }, type))) })] }), _jsxs("div", { className: "space-y-2", children: [_jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest", children: "Current Surface Finish" }), _jsx("input", { type: "text", placeholder: "e.g. 2000 Grit Abralon", className: "w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all", value: formData.surfaceFinish, onChange: (e) => setFormData({ ...formData, surfaceFinish: e.target.value }) })] }), _jsxs("div", { className: "space-y-2", children: [_jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest", children: "Image URL (Optional)" }), _jsxs("div", { className: "flex gap-2", children: [_jsx("input", { type: "text", placeholder: "https://...", className: "flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all", value: formData.imageUrl, onChange: (e) => setFormData({ ...formData, imageUrl: e.target.value }) }), _jsx("button", { type: "button", className: "bg-slate-800 p-3 rounded-xl text-slate-500 hover:text-indigo-400 transition-colors", children: _jsx(Camera, { size: 20 }) })] })] }), _jsx("div", { className: "pt-4", children: _jsxs("button", { type: "submit", className: "w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 shadow-xl shadow-indigo-500/20 transition-all active:scale-95", children: [_jsx(Save, { size: 20 }), initialData ? 'Update Ball' : 'Add to Arsenal'] }) })] })] })] }));
+};
+export default BallModal;
